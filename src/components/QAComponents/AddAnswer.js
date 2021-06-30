@@ -7,7 +7,7 @@ function AddAnswer() {
         <input
           aria-label="Add an answer"
           autoComplete="off"
-          className="text-sm text-gray-base w-full mr-3 py-5 px-4 outline-none"
+          className="text-sm text-gray-base w-full mr-3 py-2 px-4 outline-none"
           type="text"
           name="add-comment"
           placeholder="Add an answer."

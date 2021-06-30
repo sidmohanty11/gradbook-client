@@ -1,14 +1,14 @@
 import React from "react";
 import HeaderIcon from "./HeaderIcon";
 import { Link } from "react-router-dom";
-import { DASHBOARD, STORIES } from "../../constants/routes";
+import { DASHBOARD, STORIES, MESSAGES } from "../../constants/routes";
 
 function Header({ active }) {
   return (
     <div className="sticky top-0 z-50 flex items-center p-2 lg:px-5 shadow-md border-b-2">
       {/* left */}
       <div className="flex items-center">
-        <h2>GB</h2>
+        <h2>GradBook</h2>
         <div className="hidden md:inline-flex ml-2 items-center p-2 bg-gray-100">
           <svg
             className="h-6"
@@ -73,7 +73,7 @@ function Header({ active }) {
             <HeaderIcon>
               <svg
                 className={`${
-                  active === "blog" ? "text-green-logo" : "text-black"
+                  active === "" ? "text-green-logo" : "text-black"
                 }`}
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -92,10 +92,12 @@ function Header({ active }) {
 
       {/* right */}
       <div className="flex items-center sm:space-x-2 justify-end">
-        <Link to="/messages">
+        <Link to={MESSAGES}>
           <HeaderIcon>
             <svg
-              className="text-black"
+              className={`${
+                active === "messages" ? "text-green-logo" : "text-black"
+              }`}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"

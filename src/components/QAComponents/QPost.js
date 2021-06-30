@@ -10,12 +10,12 @@ function QPost() {
       <div className="px-3 pb-2">
         <div className="pt-1">
           <div className="mb-2 text-sm">
-            <span className="font-bold mr-2">sidharth</span>How to solve this?
+            <span className="ml-2">How to solve this?</span>
           </div>
         </div>
         <AddAnswer />
         <div className="text-sm mb-2 text-gray-400 cursor-pointer font-medium">
-          View all 14 answers
+          <span className="ml-2">View all 14 answers</span>
         </div>
         <Answers />
       </div>
