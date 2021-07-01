@@ -6,6 +6,7 @@ import {
   DASHBOARD,
   STORIES,
   MESSAGES,
+  BLOGS,
 } from "./constants/routes";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -13,6 +14,7 @@ import Dashboard from "./pages/dashboard";
 import Stories from "./pages/stories";
 import NotFound from "./pages/notfound";
 import Messages from "./pages/messages";
+import Blogs from "./pages/blogs";
 
 function App() {
   return (
@@ -31,6 +33,9 @@ function App() {
       </Route>
       <Route exact path={MESSAGES}>
         <Messages />
+      </Route>
+      <Route exact path={BLOGS}>
+        <Blogs />
       </Route>
       <Route>
         <NotFound />

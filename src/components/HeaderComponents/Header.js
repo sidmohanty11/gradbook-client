@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderIcon from "./HeaderIcon";
 import { Link } from "react-router-dom";
 import { DASHBOARD, STORIES, MESSAGES } from "../../constants/routes";
 
 function Header({ active }) {
+  const [dropdown, setDropdown] = useState(false);
   return (
     <div className="sticky top-0 z-50 flex items-center p-2 lg:px-5 shadow-md border-b-2">
       {/* left */}
       <div className="flex items-center">
-        <h2>GradBook</h2>
+        <img width="110px" src="./logo.png" alt="logo" />
         <div className="hidden md:inline-flex ml-2 items-center p-2 bg-gray-100">
           <svg
             className="h-6"
@@ -37,7 +38,9 @@ function Header({ active }) {
             <HeaderIcon>
               <svg
                 className={`${
-                  active === "dashboard" ? "text-green-logo" : "text-black"
+                  active === "dashboard"
+                    ? "text-green-logo"
+                    : "text-black hover:text-green-forhover"
                 }`}
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -55,7 +58,9 @@ function Header({ active }) {
             <HeaderIcon>
               <svg
                 className={`${
-                  active === "story" ? "text-green-logo" : "text-black"
+                  active === "story"
+                    ? "text-green-logo"
+                    : "text-black hover:text-green-forhover"
                 }`}
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -69,11 +74,13 @@ function Header({ active }) {
               </svg>
             </HeaderIcon>
           </Link>
-          <Link to="">
+          <Link to="blogs">
             <HeaderIcon>
               <svg
                 className={`${
-                  active === "" ? "text-green-logo" : "text-black"
+                  active === "blogs"
+                    ? "text-green-logo"
+                    : "text-black hover:text-green-forhover"
                 }`}
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -96,7 +103,9 @@ function Header({ active }) {
           <HeaderIcon>
             <svg
               className={`${
-                active === "messages" ? "text-green-logo" : "text-black"
+                active === "messages"
+                  ? "text-green-logo"
+                  : "text-black hover:text-green-forhover"
               }`}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -110,7 +119,58 @@ function Header({ active }) {
             </svg>
           </HeaderIcon>
         </Link>
-        <img className="ml-3 rounded-full" src="./me.jpg" width="50px" alt="" />
+
+        <div class="relative">
+          <button
+            onClick={() => setDropdown((prevState) => !prevState)}
+            class="relative z-10 block bg-white rounded-md dark:bg-gray-800 focus:outline-none"
+          >
+            <img
+              className="ml-3 rounded-full"
+              src="./me.jpg"
+              width="50px"
+              alt=""
+            />
+          </button>
+          <div
+            class={`${
+              dropdown ? "absolute" : "hidden"
+            } right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800`}
+          >
+            <a
+              href="/p"
+              class={`${
+                dropdown ? "block" : "hidden"
+              } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
+            >
+              your profile
+            </a>
+            <a
+              href="/b"
+              class={`${
+                dropdown ? "block" : "hidden"
+              } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
+            >
+              Your blogs
+            </a>
+            <a
+              href="/s"
+              class={`${
+                dropdown ? "block" : "hidden"
+              } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
+            >
+              Settings
+            </a>
+            <a
+              href="/signout"
+              class={`${
+                dropdown ? "block" : "hidden"
+              } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
+            >
+              Sign Out
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

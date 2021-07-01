@@ -12,6 +12,7 @@ module.exports = {
         },
         green: {
           logo: "#7ed957",
+          forhover: "#44bd32",
         },
       },
     },
