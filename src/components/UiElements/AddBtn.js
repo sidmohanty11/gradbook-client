@@ -1,9 +1,9 @@
 import React from "react";
 
-function AddStoryBtn() {
+function AddBtn({ element }) {
   return (
     <button className="flex p-2 hover:translate-x-2 hover:bg-black-logo hover:text-white border border-black-logo">
-      <span className="mr-2">Add Story</span>
+      <span className="mr-2">Add {element}</span>
       <svg
         width="24"
         height="24"
@@ -20,4 +20,4 @@ function AddStoryBtn() {
   );
 }
 
-export default AddStoryBtn;
+export default AddBtn;

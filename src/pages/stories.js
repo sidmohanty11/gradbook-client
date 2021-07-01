@@ -1,14 +1,14 @@
 import React from "react";
 import Header from "../components/HeaderComponents/Header";
 import Story from "../components/StoryComponent/Story";
-import AddStoryBtn from "../components/StoryComponent/AddStoryBtn";
+import AddBtn from "../components/UiElements/AddBtn";
 
 function Stories() {
   return (
     <>
       <Header active="story" />
       <div className="flex mt-4 justify-center">
-        <AddStoryBtn />
+        <AddBtn element="Story" />
       </div>
       <div className="flex mt-4 justify-center">
         <Story />
