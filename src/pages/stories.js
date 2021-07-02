@@ -8,7 +8,7 @@ function Stories() {
     <>
       <Header active="story" />
       <div className="flex mt-4 justify-center">
-        <AddBtn element="Story" />
+        <AddBtn element="Story" to="/add/story" />
       </div>
       <div className="flex mt-4 justify-center">
         <Story />

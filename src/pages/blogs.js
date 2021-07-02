@@ -8,7 +8,7 @@ function Blogs() {
     <div>
       <Header active="blogs" />
       <div className="flex mt-4 justify-center">
-        <AddBtn element="Blog" />
+        <AddBtn element="Blog" to="/add/blog" />
       </div>
       <Blog />
     </div>

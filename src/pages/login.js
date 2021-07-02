@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { LOGIN, SIGNUP } from "../constants/routes";
 
 function Login() {
   return (
@@ -29,16 +30,16 @@ function Login() {
             </div>
           </div>
           <div className="flex justify-between">
-            <Link to="/login" className="text-xs text-gray-500 mb-4">
+            <Link to={LOGIN} className="text-xs text-gray-500 mb-4">
               Forgot Password?
             </Link>
-            <Link to="/register" className="text-xs text-gray-500 mb-4">
+            <Link to={SIGNUP} className="text-xs text-gray-500 mb-4">
               Don't have an account?
             </Link>
           </div>
           <button
             type="submit"
-            className="w-full py-2 rounded-full bg-green-logo text-gray-100 focus:outline-none"
+            className="w-full py-2 rounded-full bg-green-logo hover:bg-green-forhover text-gray-100 focus:outline-none"
           >
             Login
           </button>
