@@ -5,12 +5,7 @@ function AskQuestion() {
     <form action="">
       <div className="flex mt-4 justify-center">
         <div>
-          <img
-            className="rounded-full mr-2"
-            width="50px"
-            src="./me.jpg"
-            alt=""
-          />
+          <img className="rounded-sm mr-2" width="55px" src="./m.jpeg" alt="" />
         </div>
         <div>
           <input
@@ -21,7 +16,7 @@ function AskQuestion() {
         </div>
         <button type="submit" className="ml-2">
           <svg
-            className="text-black"
+            className="text-black hover:text-green-forhover"
             xmlns="http://www.w3.org/2000/svg"
             width="30"
             height="30"

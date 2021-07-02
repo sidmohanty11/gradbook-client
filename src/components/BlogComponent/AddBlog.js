@@ -1,7 +1,8 @@
 import React from "react";
+import TextEditor from "../UiElements/TextEditor";
 
 function AddBlog() {
-  return <div></div>;
+  return <TextEditor />;
 }
 
 export default AddBlog;

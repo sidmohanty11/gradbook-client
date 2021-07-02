@@ -11,3 +11,12 @@
 // What was the silliest saying?
 // What is your biggest pet peeve?
 // What will you be remembered for?
+
+import React from "react";
+import StoryDetails from "../UiElements/StoryDetails";
+
+function AddStory() {
+  return <StoryDetails />;
+}
+
+export default AddStory;

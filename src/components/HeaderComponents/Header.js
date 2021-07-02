@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import HeaderIcon from "./HeaderIcon";
 import { Link } from "react-router-dom";
 import { DASHBOARD, STORIES, MESSAGES } from "../../constants/routes";
+import { UserCtx } from "../../context/user";
 
 function Header({ active }) {
   const [dropdown, setDropdown] = useState(false);
+  const user = useContext(UserCtx);
   return (
     <div className="sticky top-0 z-50 flex items-center p-2 lg:px-5 shadow-md border-b-2">
       {/* left */}
@@ -120,26 +122,26 @@ function Header({ active }) {
           </HeaderIcon>
         </Link>
 
-        <div class="relative">
+        <div className="relative">
           <button
             onClick={() => setDropdown((prevState) => !prevState)}
-            class="relative z-10 block bg-white rounded-md dark:bg-gray-800 focus:outline-none"
+            className="relative z-10 block bg-white rounded-md dark:bg-gray-800 focus:outline-none"
           >
             <img
-              className="ml-3 rounded-full"
-              src="./me.jpg"
+              className="ml-1 rounded-full"
+              src={user.story.imageURL}
               width="50px"
               alt=""
             />
           </button>
           <div
-            class={`${
+            className={`${
               dropdown ? "absolute" : "hidden"
             } right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800`}
           >
             <a
               href="/p"
-              class={`${
+              className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
@@ -147,7 +149,7 @@ function Header({ active }) {
             </a>
             <a
               href="/b"
-              class={`${
+              className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
@@ -155,7 +157,7 @@ function Header({ active }) {
             </a>
             <a
               href="/s"
-              class={`${
+              className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
@@ -163,7 +165,7 @@ function Header({ active }) {
             </a>
             <a
               href="/signout"
-              class={`${
+              className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
