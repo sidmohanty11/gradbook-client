@@ -1,14 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import HeaderIcon from "./HeaderIcon";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { DASHBOARD, STORIES, MESSAGES } from "../../constants/routes";
-import { UserCtx } from "../../context/user";
 
-function Header({ active }) {
+function Header({ active, user }) {
+  const history = useHistory();
   const [dropdown, setDropdown] = useState(false);
-  const user = useContext(UserCtx);
   return (
-    <div className="sticky top-0 z-50 flex items-center p-2 lg:px-5 shadow-md border-b-2">
+    <div className="sticky top-0 z-50 flex bg-gray-200 items-center p-2 lg:px-5 shadow-md border-b-2">
       {/* left */}
       <div className="flex items-center">
         <img width="110px" src="./logo.png" alt="logo" />
@@ -128,8 +127,8 @@ function Header({ active }) {
             className="relative z-10 block bg-white rounded-md dark:bg-gray-800 focus:outline-none"
           >
             <img
-              className="ml-1 rounded-full"
-              src={user.story.imageURL}
+              className="ml-1 rounded-full bg-gray-200"
+              src={user.image_url}
               width="50px"
               alt=""
             />
@@ -140,7 +139,7 @@ function Header({ active }) {
             } right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800`}
           >
             <a
-              href="/p"
+              href={`/profile/${user.id}`}
               className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
@@ -164,10 +163,14 @@ function Header({ active }) {
               Settings
             </a>
             <a
-              href="/signout"
+              onClick={() => {
+                sessionStorage.removeItem("token");
+                user = null;
+                history.push("/login");
+              }}
               className={`${
                 dropdown ? "block" : "hidden"
-              } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
+              } px-4 py-2 cursor-pointer text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
               Sign Out
             </a>
