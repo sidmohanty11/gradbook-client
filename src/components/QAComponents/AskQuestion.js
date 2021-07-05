@@ -1,11 +1,16 @@
 import React from "react";
 
-function AskQuestion() {
+function AskQuestion({ user }) {
   return (
     <form action="">
       <div className="flex mt-4 justify-center">
         <div>
-          <img className="rounded-sm mr-2" width="55px" src="./m.jpeg" alt="" />
+          <img
+            className="rounded-full mr-2"
+            width="55px"
+            src={user.image_url}
+            alt=""
+          />
         </div>
         <div>
           <input

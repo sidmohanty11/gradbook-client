@@ -14,6 +14,9 @@ module.exports = {
           logo: "#7ed957",
           forhover: "#44bd32",
         },
+        white: {
+          mywhite: "#f5f6fa",
+        },
       },
     },
   },
