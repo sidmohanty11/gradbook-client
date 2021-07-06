@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function AddBtn({ element, to }) {
   return (
     <Link to={to}>
-      <button className="flex p-2 hover:translate-x-2 hover:bg-black-logo hover:text-white border border-black-logo">
+      <button className="flex p-2 hover:translate-x-2 hover:bg-black-logo border border-black-logo hover:text-white-mywhite">
         <span className="mr-2">Add {element}</span>
         <svg
           width="24"

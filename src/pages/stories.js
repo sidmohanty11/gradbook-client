@@ -26,11 +26,11 @@ function Stories() {
       <div className="flex mt-4 justify-center">
         <AddBtn element="Story" to="/add/story" />
       </div>
-      <div className="flex mt-4 justify-center">
-        {stories?.map((story) => (
+      {stories?.map((story) => (
+        <div key={story.id} className="flex mt-4 justify-center">
           <Story key={story.id} story={story} />
-        ))}
-      </div>
+        </div>
+      ))}
     </>
   );
 }

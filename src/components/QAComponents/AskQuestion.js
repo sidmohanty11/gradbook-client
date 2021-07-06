@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "../../axios";
+import { useHistory } from "react-router-dom";
 
 function AskQuestion({ user }) {
+  const { id } = user;
+  const history = useHistory();
+  const [question, setQuestion] = useState("");
+  async function postAQuestion(e) {
+    e.preventDefault();
+    if (question.length > 0) {
+      await axios.post("/api/v1/question", {
+        user_id: id,
+        q_text: question,
+      });
+      setQuestion("");
+      //for making it realtime -_^
+      history.push("/s");
+      history.push("/");
+    }
+  }
   return (
-    <form action="">
+    <form>
       <div className="flex mt-4 justify-center">
         <div>
           <img
@@ -14,12 +32,14 @@ function AskQuestion({ user }) {
         </div>
         <div>
           <input
+            onChange={(e) => setQuestion(e.target.value)}
+            value={question}
             className="h-12 md:w-96 rounded-sm bg-gray-100 flex-grow px-5 focus:outline-none"
             type="text"
             placeholder="Ask your question?"
           />
         </div>
-        <button type="submit" className="ml-2">
+        <button onClick={postAQuestion} type="submit" className="ml-2">
           <svg
             className="text-black hover:text-green-forhover"
             xmlns="http://www.w3.org/2000/svg"

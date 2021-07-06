@@ -23,11 +23,11 @@ function Dashboard() {
     <div>
       <Header active="dashboard" user={user} />
       <AskQuestion user={user} />
-      <div className="flex justify-center mt-4">
-        {questions?.map((question) => (
+      {questions?.map((question) => (
+        <div key={question.id} className="flex justify-center mt-4">
           <QPost key={question.id} question={question} />
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
