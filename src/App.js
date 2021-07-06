@@ -7,8 +7,10 @@ import {
   STORIES,
   MESSAGES,
   BLOGS,
+  BLOG,
   ADDBLOG,
   ADDSTORY,
+  PROFILE,
 } from "./constants/routes";
 import { UserCtx } from "./context/user";
 import Login from "./pages/login";
@@ -18,9 +20,11 @@ import Stories from "./pages/stories";
 import NotFound from "./pages/notfound";
 import Messages from "./pages/messages";
 import Blogs from "./pages/blogs";
+import Blog from "./pages/blog";
 import AddBlog from "./components/BlogComponent/AddBlog";
 import AddStory from "./components/StoryComponent/AddStory";
 import IsProtected from "./components/AuthComponents/IsProtected";
+import Profile from "./pages/profile";
 
 function App() {
   const [activeUser, setActiveUser] = useState(null);
@@ -46,11 +50,17 @@ function App() {
           <Route exact path={BLOGS}>
             <Blogs />
           </Route>
+          <Route exact path={BLOG}>
+            <Blog />
+          </Route>
           <Route exact path={ADDBLOG}>
             <AddBlog />
           </Route>
           <Route exact path={ADDSTORY}>
             <AddStory />
+          </Route>
+          <Route exact path={PROFILE}>
+            <Profile />
           </Route>
         </IsProtected>
       </UserCtx.Provider>

@@ -1,4 +1,6 @@
 import React from "react";
+import truncateString from "../../helpers/truncateString";
+import { Link } from "react-router-dom";
 
 function Blog({ blog }) {
   return (
@@ -13,14 +15,14 @@ function Blog({ blog }) {
           <span className="text-xs font-medium text-green-logo uppercase dark:text-blue-400">
             CET BHUBANESWAR
           </span>
-          <a
-            href={blog.id}
+          <Link
+            to={`/blog/${blog.id}`}
             className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 hover:underline"
           >
             {blog.blog_title}
-          </a>
+          </Link>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {blog.blog_text}
+            {truncateString(blog.blog_text, 270)}
           </p>
         </div>
 
@@ -32,12 +34,12 @@ function Blog({ blog }) {
                 src={blog.image_url}
                 alt="Avatar"
               />
-              <a
-                href={`/profile/${blog.user_id}`}
+              <Link
+                to={`/profile/${blog.user_id}`}
                 className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
               >
                 {blog.username}
-              </a>
+              </Link>
             </div>
             <span className="mx-1 text-xs text-gray-400 dark:text-gray-300">
               {new Date(blog.created_on).toDateString()}

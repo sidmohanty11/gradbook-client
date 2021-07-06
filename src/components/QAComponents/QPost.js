@@ -15,10 +15,7 @@ function QPost({ question }) {
             <span className="ml-2">{question.q_text}</span>
           </div>
         </div>
-        <AddAnswer user={user} />
-        {/* <div className="text-sm mb-2 text-gray-400 cursor-pointer font-medium">
-          <span className="ml-2">View all 14 answers</span>
-        </div> */}
+        <AddAnswer user={user} question={question} />
         <Answers question={question} />
       </div>
     </div>

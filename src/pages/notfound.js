@@ -2,30 +2,21 @@ import React from "react";
 
 function NotFound() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-indigo-500  bg-fixed bg-cover bg-bottom error-bg">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-8 offset-sm-2 text-gray-50 text-center -mt-52">
-            <div className="relative ">
-              <h1 className="relative text-9xl tracking-tighter-less text-shadow font-sans font-bold">
-                <span>4</span>
-                <span>0</span>
-                <span>4</span>
-              </h1>
-              <span className="absolute top-0 -ml-12 text-gray-300 font-semibold">
-                Oops!
-              </span>
-            </div>
-            <h5 className="text-gray-300 font-semibold -mr-10 -mt-3">
-              Page not found
-            </h5>
-            <p className="text-gray-100 mt-2 mb-6">
-              we are sorry, but the page you requested was not found
-            </p>
-            <a className="bg-green-400  px-5 py-3 text-sm shadow-sm font-medium tracking-wider text-gray-50 rounded-full hover:shadow-lg">
-              Got to Home
-            </a>
-          </div>
+    <div className="bg-indigo-900 relative overflow-hidden h-screen">
+      <img
+        src="https://images.unsplash.com/photo-1517322479358-df90f951f87d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+        alt=""
+        className="absolute h-full w-full object-cover"
+      />
+      <div className="inset-0 bg-black opacity-25 absolute"></div>
+      <div className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-40">
+        <div className="w-full font-mono flex flex-col items-center relative z-10">
+          <h1 className="font-extrabold text-5xl text-center text-white leading-tight mt-4">
+            You&#x27;re alone here
+          </h1>
+          <p className="font-extrabold text-8xl my-44 text-white animate-bounce">
+            404
+          </p>
         </div>
       </div>
     </div>

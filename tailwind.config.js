@@ -15,6 +15,7 @@ module.exports = {
           forhover: "#44bd32",
         },
         white: {
+          normal: "#ffffff",
           mywhite: "#f5f6fa",
         },
       },

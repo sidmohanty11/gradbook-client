@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import HeaderIcon from "./HeaderIcon";
-import { Link, useHistory } from "react-router-dom";
-import { DASHBOARD, STORIES, MESSAGES } from "../../constants/routes";
+import { Link } from "react-router-dom";
+import { DASHBOARD, STORIES, MESSAGES, BLOGS } from "../../constants/routes";
 
 function Header({ active, user }) {
-  const history = useHistory();
   const [dropdown, setDropdown] = useState(false);
   return (
     <div className="sticky top-0 z-50 flex bg-gray-200 items-center p-2 lg:px-5 shadow-md border-b-2">
       {/* left */}
       <div className="flex items-center">
-        <img width="110px" src="./logo.png" alt="logo" />
+        <img
+          width="110px"
+          src="https://rrinsunc.sirv.com/Images/logo.png"
+          alt="logo"
+        />
         <div className="hidden md:inline-flex ml-2 items-center p-2 bg-gray-100">
           <svg
             className="h-6"
@@ -75,7 +78,7 @@ function Header({ active, user }) {
               </svg>
             </HeaderIcon>
           </Link>
-          <Link to="blogs">
+          <Link to={BLOGS}>
             <HeaderIcon>
               <svg
                 className={`${
@@ -128,7 +131,7 @@ function Header({ active, user }) {
           >
             <img
               className="ml-1 rounded-full bg-gray-200"
-              src={user.image_url}
+              src={user?.image_url}
               width="50px"
               alt=""
             />
@@ -138,42 +141,34 @@ function Header({ active, user }) {
               dropdown ? "absolute" : "hidden"
             } right-0 z-20 w-48 py-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800`}
           >
-            <a
-              href={`/profile/${user.id}`}
+            <Link
+              to={`/profile/${user?.id}`}
               className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
               your profile
-            </a>
-            <a
-              href="/b"
-              className={`${
-                dropdown ? "block" : "hidden"
-              } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
-            >
-              Your blogs
-            </a>
-            <a
-              href="/s"
+            </Link>
+            <Link
+              to="/s"
               className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
               Settings
-            </a>
-            <a
+            </Link>
+            <Link
+              to="/login"
               onClick={() => {
                 sessionStorage.removeItem("token");
                 user = null;
-                history.push("/login");
               }}
               className={`${
                 dropdown ? "block" : "hidden"
               } px-4 py-2 cursor-pointer text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-green-logo hover:text-white dark:hover:text-white`}
             >
               Sign Out
-            </a>
+            </Link>
           </div>
         </div>
       </div>
