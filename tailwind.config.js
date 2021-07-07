@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         black: {
           light: "#262626",
-          faded: "00000059",
+          faded: "#00000059",
           dark: "#000",
           logo: "#0c1618",
         },
