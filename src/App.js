@@ -11,6 +11,7 @@ import {
   ADDBLOG,
   ADDSTORY,
   PROFILE,
+  MESSAGETO,
 } from "./constants/routes";
 import { UserCtx } from "./context/user";
 import IsProtected from "./components/AuthComponents/IsProtected";
@@ -26,6 +27,7 @@ const Stories = lazy(() => import("./pages/stories"));
 const AddStory = lazy(() => import("./components/StoryComponent/AddStory"));
 const AddBlog = lazy(() => import("./components/BlogComponent/AddBlog"));
 const Messages = lazy(() => import("./pages/messages"));
+const Message = lazy(() => import("./pages/message"));
 
 function App() {
   const [activeUser, setActiveUser] = useState(null);
@@ -48,6 +50,9 @@ function App() {
             </Route>
             <Route exact path={MESSAGES}>
               <Messages />
+            </Route>
+            <Route exact path={MESSAGETO}>
+              <Message />
             </Route>
             <Route exact path={BLOGS}>
               <Blogs />

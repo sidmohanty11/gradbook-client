@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Header from "../components/HeaderComponents/Header";
 import Sidebar from "../components/MessageComponent/Sidebar";
-import Chat from "../components/MessageComponent/Chat";
 import { UserCtx } from "../context/user";
 
 function Messages() {
@@ -11,7 +10,6 @@ function Messages() {
       <Header active="messages" user={user} />
       <div className="container flex justify-center">
         <Sidebar user={user} />
-        <Chat />
       </div>
     </>
   );

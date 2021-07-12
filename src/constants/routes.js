@@ -3,6 +3,7 @@ export const SIGNUP = "/signup";
 export const DASHBOARD = "/";
 export const STORIES = "/stories";
 export const MESSAGES = "/messages";
+export const MESSAGETO = "/messages/:to";
 export const BLOGS = "/blogs";
 export const BLOG = "/blog/:id";
 export const ADDBLOG = "/add/blog";
