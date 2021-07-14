@@ -13,16 +13,18 @@ function Login({ setActiveUser }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     const res = await axios
-      .post("/api/v1/login", {
-        username,
-        password,
-      })
+      .post(
+        "/api/v1/login",
+        {
+          username,
+          password,
+        },
+        { withCredentials: true }
+      )
       .catch((err) => setAuthorized(false));
     if (res && res.data.status === "success") {
-      sessionStorage.setItem("token", res.data.data);
-      const data = await res.data;
-      const user = await getUserByUsername(data.username);
-      setActiveUser(user);
+      const user = await getUserByUsername(res.data.username);
+      setActiveUser(user.user);
       history.push("/");
     }
   };

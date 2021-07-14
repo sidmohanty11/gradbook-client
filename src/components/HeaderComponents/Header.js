@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HeaderIcon from "./HeaderIcon";
 import { Link } from "react-router-dom";
+import axios from "../../axios";
 import { DASHBOARD, STORIES, MESSAGES, BLOGS } from "../../constants/routes";
 
 function Header({ active, user }) {
@@ -159,9 +160,12 @@ function Header({ active, user }) {
             </Link>
             <Link
               to="/login"
-              onClick={() => {
-                sessionStorage.removeItem("token");
-                user = null;
+              onClick={async () => {
+                await axios.post(
+                  "/api/v1/logout",
+                  {},
+                  { withCredentials: true }
+                );
               }}
               className={`${
                 dropdown ? "block" : "hidden"
