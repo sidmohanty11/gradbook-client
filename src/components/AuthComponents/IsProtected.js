@@ -3,10 +3,8 @@ import { useHistory } from "react-router";
 
 function IsProtected(props) {
   const history = useHistory();
-  if (
-    sessionStorage.getItem("token") &&
-    sessionStorage.getItem("token").length > 0
-  ) {
+  if (true) {
+    //props.user
     return <div>{props.children}</div>;
   } else {
     history.push("/login");
