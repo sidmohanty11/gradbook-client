@@ -11,7 +11,9 @@ function Stories() {
 
   useEffect(() => {
     async function callStories() {
-      const res = await axios.get("/api/v1/stories");
+      const res = await axios.get("/api/v1/stories", {
+        withCredentials: true,
+      });
       if (res.status === 200) {
         const storyArr = await res.data.stories;
         setStories(storyArr);

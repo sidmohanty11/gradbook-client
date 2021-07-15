@@ -24,21 +24,35 @@ const rules = (arrayOfNodes) => {
         arrayOfElements.push(
           node.children.map((child) =>
             htmlString(
-              <pre>
-                <code>{child.text}</code>
-              </pre>
+              <div>
+                <pre>
+                  <code>{child.text}</code>
+                </pre>
+              </div>
             )
           )
         );
         break;
       case "paragraph":
-        if (node.children[1] && node.children[1].bold === true) {
+        if (
+          node.children[1] &&
+          (node.children[1].bold === true || node.children[2].bold === true)
+        ) {
           arrayOfElements.push(
             node.children.map((child) =>
               htmlString(<p style={{ fontWeight: "bold" }}>{child.text}</p>)
             )
           );
-        } else if (node.children[1] && node.children[1].italic === true) {
+        } else {
+          arrayOfElements.push(
+            node.children.map((child) => htmlString(child.text))
+          );
+        }
+
+        if (
+          node.children[1] &&
+          (node.children[1].italic === true || node.children[2].italic === true)
+        ) {
           arrayOfElements.push(
             node.children.map((child) =>
               htmlString(<p style={{ fontStyle: "italic" }}>{child.text}</p>)
@@ -46,14 +60,20 @@ const rules = (arrayOfNodes) => {
           );
         } else {
           arrayOfElements.push(
-            node.children.map((child) => htmlString(<p>{child.text}</p>))
+            node.children.map((child) => htmlString(child.text))
           );
         }
         break;
       case "image":
         arrayOfElements.push(
-          htmlString(<img src={node.url} alt={node.children.text} />)
+          htmlString(
+            <div>
+              <img src={node.url} alt={node.children.text} />
+            </div>
+          )
         );
+        break;
+      default:
         break;
     }
   }
@@ -137,6 +157,7 @@ export const Image = ({ attributes, children, element }) => {
     <div {...attributes}>
       <div contentEditable={false}>
         <img
+          alt=""
           src={element.url}
           className={{
             display: "block",
@@ -156,7 +177,7 @@ const initialValue = [
     type: "paragraph",
     children: [
       {
-        text: "Write your blog here.",
+        text: "Write your blog here. This is still in beta, use bold or italics or code on their own separate line to avoid conflicts. You can insert image directly by Ctrl+V the image url to the editor. Some shortcuts -> Ctrl + ` = code, Ctrl + b = bold, Ctrl + i = italic...",
       },
     ],
   },
@@ -245,7 +266,6 @@ const TextEditor = ({ blogThumbnail, blogTitle, user }) => {
           >
             image
           </button>
-          <button className="mx-2">link</button>
         </div>
         <Slate
           editor={editor}
@@ -294,6 +314,9 @@ const TextEditor = ({ blogThumbnail, blogTitle, user }) => {
                   );
                   break;
                 }
+
+                default:
+                  break;
               }
             }}
           />

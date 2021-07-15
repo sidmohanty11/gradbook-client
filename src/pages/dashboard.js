@@ -11,7 +11,9 @@ function Dashboard() {
 
   useEffect(() => {
     async function callQuestions() {
-      const res = await axios.get("/api/v1/questions");
+      const res = await axios.get("/api/v1/questions", {
+        withCredentials: true,
+      });
       if (res.status === 200) {
         const QuesArr = await res.data.qs;
         setQuestions(QuesArr);

@@ -15,7 +15,7 @@ function Header({ question }) {
           <p className="font-bold">{question.username}</p>
         </Link>
         <div className="flex items-center text-xs text-gray-600">
-          <p>{timeSince(new Date(question.created_on))}</p>
+          <p>{timeSince(new Date(question.created_on).getTime())}</p>
         </div>
       </div>
     </div>

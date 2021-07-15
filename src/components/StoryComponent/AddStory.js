@@ -18,18 +18,24 @@ function AddStory() {
 
   async function addYourStory(e) {
     e.preventDefault();
-    const res = await axios.post("/api/v1/story", {
-      user_id: id,
-      name,
-      branch,
-      clubs,
-      motto,
-      github_link: githubLink,
-      linkedin_link: linkedinLink,
-      youtube_link: youtubeLink,
-      journey,
-      image_url: imageURL,
-    });
+    const res = await axios.post(
+      "/api/v1/story",
+      {
+        user_id: id,
+        name,
+        branch,
+        clubs,
+        motto,
+        github_link: githubLink,
+        linkedin_link: linkedinLink,
+        youtube_link: youtubeLink,
+        journey,
+        image_url: imageURL,
+      },
+      {
+        withCredentials: true,
+      }
+    );
     console.log(`res`, res);
   }
   return (
@@ -45,7 +51,7 @@ function AddStory() {
 
         <div className="grid grid-cols-1 mt-5 mx-7">
           <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">
-            Your name
+            Your Story Headline
           </label>
           <input
             value={name}
@@ -80,7 +86,7 @@ function AddStory() {
               onChange={(e) => setClubs(e.target.value)}
               className="py-2 px-3 rounded-lg border-2 border-gray-200 mt-1 focus:outline-none focus:ring-2 focus:ring-green-logo focus:border-transparent"
               type="text"
-              placeholder="Clubs (if any or write nil)"
+              placeholder="Clubs (if any or write none)"
               required
             />
           </div>

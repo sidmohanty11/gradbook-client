@@ -22,7 +22,7 @@ function Story({ story }) {
         </div>
         <div className="py-2 px-4">
           <h1 className="text-xl font-medium leading-6 tracking-wide hover:text-green-forhover cursor-pointer">
-            <Link to={`/profile/${story.id}`}>{story.name}</Link>
+            <Link to={`/story/${story.id}`}>{story.name}</Link>
           </h1>
         </div>
         <div className="px-4 space-y-2">

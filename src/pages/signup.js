@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { LOGIN } from "../constants/routes";
 import axios from "../axios";
-import { getUserByUsername } from "../helpers/getUserByUsername";
 
 function Signup({ setActiveUser }) {
   const history = useHistory();
@@ -10,24 +9,26 @@ function Signup({ setActiveUser }) {
   const [password, setPassword] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [email, setEmail] = useState("");
+  const [magicWord, setMagicWord] = useState("");
   const [authorized, setAuthorized] = useState(true);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     const res = await axios
-      .post("/api/v1/register", {
-        username,
-        password,
-        imageURL,
-        email,
-      })
+      .post(
+        "/api/v1/register",
+        {
+          username,
+          password,
+          image_url: imageURL,
+          email,
+          passcode: magicWord,
+        },
+        { withCredentials: true }
+      )
       .catch((err) => setAuthorized(false));
     if (res && res.data.status === "success") {
-      sessionStorage.setItem("token", res.data.data);
-      const data = await res.data;
-      const user = await getUserByUsername(data.username);
-      setActiveUser(user);
-      history.push("/");
+      history.push("login");
     }
   };
   return (
@@ -81,6 +82,17 @@ function Signup({ setActiveUser }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
+                className="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+              />
+            </div>
+          </div>
+          <div className="w-full mb-2">
+            <div className="flex items-center">
+              <input
+                type="text"
+                value={magicWord}
+                onChange={(e) => setMagicWord(e.target.value)}
+                placeholder="Magic Word"
                 className="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
               />
             </div>

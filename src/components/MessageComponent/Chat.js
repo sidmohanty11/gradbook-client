@@ -4,6 +4,7 @@ import axios from "../../axios";
 import timeSince from "../../helpers/timeSince";
 
 function Chat({ user }) {
+  const { id } = user;
   const { to } = useParams();
   const history = useHistory();
   const [messages, setMessages] = useState([]);
@@ -11,11 +12,11 @@ function Chat({ user }) {
 
   useEffect(() => {
     async function getAllMessages() {
-      const res = await axios.get(`/api/v1/messages/${user.id}/${to}`);
+      const res = await axios.get(`/api/v1/messages/${id}/${to}`);
       setMessages(res.data.messages);
     }
     getAllMessages();
-  }, []);
+  }, [to, id]);
 
   async function sendMessage(e) {
     e.preventDefault();
@@ -57,7 +58,7 @@ function Chat({ user }) {
                 {msg.content}
               </div>
               <div key={msg.id} className="text-sm text-gray-600">
-                {timeSince(new Date(msg.created_on))}
+                {timeSince(new Date(msg.created_on).getTime())}
               </div>
             </div>
           </div>

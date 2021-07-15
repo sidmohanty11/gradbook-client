@@ -16,7 +16,9 @@ function Profile() {
 
   useEffect(() => {
     async function callBlogs() {
-      const res = await axios.get(`/api/v1/blogs/${id}`);
+      const res = await axios.get(`/api/v1/blogs/${id}`, {
+        withCredentials: true,
+      });
       if (res.status === 200) {
         const blogArr = await res.data.blogs;
         setBlogs(blogArr);

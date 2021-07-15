@@ -5,6 +5,7 @@ import {
   SIGNUP,
   DASHBOARD,
   STORIES,
+  STORY,
   MESSAGES,
   BLOGS,
   BLOG,
@@ -24,6 +25,7 @@ const Profile = lazy(() => import("./pages/profile"));
 const Blogs = lazy(() => import("./pages/blogs"));
 const Blog = lazy(() => import("./pages/blog"));
 const Stories = lazy(() => import("./pages/stories"));
+const Story = lazy(() => import("./pages/story"));
 const AddStory = lazy(() => import("./components/StoryComponent/AddStory"));
 const AddBlog = lazy(() => import("./components/BlogComponent/AddBlog"));
 const Messages = lazy(() => import("./pages/messages"));
@@ -49,6 +51,9 @@ function App() {
             </Route>
             <Route exact path={STORIES}>
               <Stories />
+            </Route>
+            <Route exact path={STORY}>
+              <Story />
             </Route>
             <Route exact path={MESSAGES}>
               <Messages />

@@ -2,6 +2,7 @@ export const LOGIN = "/login";
 export const SIGNUP = "/signup";
 export const DASHBOARD = "/";
 export const STORIES = "/stories";
+export const STORY = "/story/:id";
 export const MESSAGES = "/messages";
 export const MESSAGETO = "/messages/:to";
 export const BLOGS = "/blogs";

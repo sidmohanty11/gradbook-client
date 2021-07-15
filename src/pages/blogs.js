@@ -11,7 +11,9 @@ function Blogs() {
 
   useEffect(() => {
     async function callBlogs() {
-      const res = await axios.get("/api/v1/blogs/");
+      const res = await axios.get("/api/v1/blogs/", {
+        withCredentials: true,
+      });
       if (res.status === 200) {
         const blogArr = await res.data.blogs;
         setBlogs(blogArr);

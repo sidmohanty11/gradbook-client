@@ -18,11 +18,11 @@ function Blog() {
       setBlogHead(res.data);
     };
     callTheBlog();
-  }, []);
+  }, [id]);
   return (
     <div>
       <Header user={user} />
-      <div className="container w-full md:max-w-3xl mx-auto pt-20">
+      <div className="container w-full md:max-w-3xl mx-auto pt-10">
         <div className="flex justify-between">
           <h1 className="text-4xl">{blogHead?.blog_title}</h1>
           <img

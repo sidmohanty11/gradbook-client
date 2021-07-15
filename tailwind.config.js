@@ -16,7 +16,7 @@ module.exports = {
         },
         white: {
           normal: "#ffffff",
-          mywhite: "#f5f6fa",
+          mywhite: "#eee",
         },
       },
     },
