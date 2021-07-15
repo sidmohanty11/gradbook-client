@@ -9,10 +9,14 @@ function AskQuestion({ user }) {
   async function postAQuestion(e) {
     e.preventDefault();
     if (question.length > 0) {
-      await axios.post("/api/v1/question", {
-        user_id: id,
-        q_text: question,
-      });
+      await axios.post(
+        "/api/v1/question",
+        {
+          user_id: id,
+          q_text: question,
+        },
+        { withCredentials: true }
+      );
       setQuestion("");
       //for making it realtime -_^
       history.push("/s");

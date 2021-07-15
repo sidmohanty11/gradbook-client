@@ -7,7 +7,9 @@ function Answers({ question }) {
   const qid = question.id;
   useEffect(() => {
     async function callAnswers() {
-      const res = await axios.get(`/api/v1/answers/${qid}`);
+      const res = await axios.get(`/api/v1/answers/${qid}`, {
+        withCredentials: true,
+      });
       if (res.status === 200) {
         const AnsArr = res.data.ans;
         setAnswers(AnsArr);

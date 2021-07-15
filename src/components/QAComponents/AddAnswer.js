@@ -8,11 +8,15 @@ function AddAnswer({ user, question }) {
   const [ans, setAns] = useState("");
   async function postAnswer(e) {
     e.preventDefault();
-    await axios.post("/api/v1/answer", {
-      user_id: id,
-      q_id: question.id,
-      a_text: ans,
-    });
+    await axios.post(
+      "/api/v1/answer",
+      {
+        user_id: id,
+        q_id: question.id,
+        a_text: ans,
+      },
+      { withCredentials: true }
+    );
     setAns("");
     //for making it realtime -_^
     history.push("/s");
