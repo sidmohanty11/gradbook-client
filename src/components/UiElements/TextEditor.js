@@ -10,6 +10,8 @@ import {
   useFocused,
 } from "slate-react";
 import { withHistory } from "slate-history";
+import { useHistory } from "react-router-dom";
+import axios from "../../axios";
 
 // for code element
 const CodeElement = (props) => {
@@ -125,11 +127,12 @@ const initialValue = [
   },
 ];
 
-const TextEditor = () => {
+const TextEditor = ({ blogThumbnail, blogTitle, user }) => {
   const editor = useMemo(
     () => withImages(withHistory(withReact(createEditor()))),
     []
   );
+  const history = useHistory();
   const [value, setValue] = useState(initialValue);
 
   const renderElement = useCallback((props) => {
@@ -212,12 +215,7 @@ const TextEditor = () => {
         <Slate
           editor={editor}
           value={value}
-          onChange={(value) => {
-            setValue(value);
-
-            const content = JSON.stringify(value);
-            localStorage.setItem("content", content);
-          }}
+          onChange={(value) => setValue(value)}
         >
           <Editable
             placeholder="Enter your text here..."
@@ -265,6 +263,32 @@ const TextEditor = () => {
             }}
           />
         </Slate>
+      </div>
+      <div className="flex justify-center">
+        <button
+          onClick={async () => {
+            const res = await axios.post(
+              "/api/v1/blog",
+              {
+                user_id: user.id,
+                blog_title: blogTitle,
+                blog_thumbnail: blogThumbnail,
+                blog_text: JSON.stringify(value).toString(),
+              },
+              { withCredentials: true }
+            );
+            console.log(`res`, res);
+          }}
+          className="bg-gray-900 text-white-normal p-2 mr-2"
+        >
+          Post!
+        </button>
+        <button
+          onClick={() => history.push("/blogs")}
+          className="bg-red-700 text-white-normal p-2"
+        >
+          Cancel!
+        </button>
       </div>
     </div>
   );
