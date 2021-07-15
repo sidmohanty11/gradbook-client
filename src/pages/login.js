@@ -25,6 +25,7 @@ function Login({ setActiveUser }) {
     if (res && res.data.status === "success") {
       const user = await getUserByUsername(res.data.username);
       setActiveUser(user.user);
+      sessionStorage.setItem("user", JSON.stringify(user.user));
       history.push("/");
     }
   };
