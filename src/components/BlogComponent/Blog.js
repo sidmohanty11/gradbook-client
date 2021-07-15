@@ -7,7 +7,7 @@ function Blog({ blog }) {
     <div className="max-w-2xl mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
       <img
         className="object-cover w-full h-64"
-        src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+        src={blog.blog_thumbnail}
         alt="Article"
       />
       <div className="p-6">

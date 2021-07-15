@@ -27,7 +27,9 @@ function Profile() {
 
   useEffect(() => {
     async function callUserWhoseProfileIClicked() {
-      const res = await axios.get(`/api/v1/users/${id}`);
+      const res = await axios.get(`/api/v1/users/${id}`, {
+        withCredentials: true,
+      });
       setUser(res.data.user);
     }
     callUserWhoseProfileIClicked();

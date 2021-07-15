@@ -1,9 +1,11 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { UserCtx } from "../../context/user";
 import TextEditor from "../UiElements/TextEditor";
 
 function AddBlog() {
-  const history = useHistory();
+  const [blogTitle, setBlogTitle] = useState("");
+  const [blogThumbnail, setBlogThumbnail] = useState("");
+  const user = useContext(UserCtx);
   return (
     <div className="max-w-2xl mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 mb-4">
       <h1 className="text-3xl text-center mb-2">Write Your Blog...</h1>
@@ -12,6 +14,8 @@ function AddBlog() {
           Blog Title
         </label>
         <input
+          value={blogTitle}
+          onChange={(e) => setBlogTitle(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="blog-title"
@@ -22,23 +26,18 @@ function AddBlog() {
           Blog Thumbnail
         </label>
         <input
+          value={blogThumbnail}
+          onChange={(e) => setBlogThumbnail(e.target.value)}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="blog-thumbnail"
         />
       </div>
-      <TextEditor />
-      <div className="flex justify-center">
-        <button className="bg-gray-900 text-white-normal p-2 mr-2">
-          Post!
-        </button>
-        <button
-          onClick={() => history.push("/blogs")}
-          className="bg-red-700 text-white-normal p-2"
-        >
-          Cancel!
-        </button>
-      </div>
+      <TextEditor
+        user={user}
+        blogTitle={blogTitle}
+        blogThumbnail={blogThumbnail}
+      />
     </div>
   );
 }
