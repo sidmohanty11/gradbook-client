@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "image-extensions": "^1.1.0",
+    "interweave": "^12.8.0",
     "is-url": "^1.2.4",
     "pusher-js": "^7.0.3",
     "react": "^17.0.2",

@@ -1,6 +1,7 @@
 import React from "react";
 import truncateString from "../../helpers/truncateString";
 import { Link } from "react-router-dom";
+import Interweave from "interweave";
 
 function Blog({ blog }) {
   return (
@@ -22,7 +23,7 @@ function Blog({ blog }) {
             {blog.blog_title}
           </Link>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {truncateString(blog.blog_text, 270)}
+            <Interweave content={truncateString(blog.blog_text, 100)} />
           </p>
         </div>
 
