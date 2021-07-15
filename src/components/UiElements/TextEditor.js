@@ -12,9 +12,56 @@ import {
 import { withHistory } from "slate-history";
 import { useHistory } from "react-router-dom";
 import axios from "../../axios";
+import ReactDOMServer from "react-dom/server";
+
+const htmlString = (el) => ReactDOMServer.renderToStaticMarkup(el);
+
+const rules = (arrayOfNodes) => {
+  let arrayOfElements = [];
+  for (let node of arrayOfNodes) {
+    switch (node.type) {
+      case "code":
+        arrayOfElements.push(
+          node.children.map((child) =>
+            htmlString(
+              <pre>
+                <code>{child.text}</code>
+              </pre>
+            )
+          )
+        );
+        break;
+      case "paragraph":
+        if (node.children[1] && node.children[1].bold === true) {
+          arrayOfElements.push(
+            node.children.map((child) =>
+              htmlString(<p style={{ fontWeight: "bold" }}>{child.text}</p>)
+            )
+          );
+        } else if (node.children[1] && node.children[1].italic === true) {
+          arrayOfElements.push(
+            node.children.map((child) =>
+              htmlString(<p style={{ fontStyle: "italic" }}>{child.text}</p>)
+            )
+          );
+        } else {
+          arrayOfElements.push(
+            node.children.map((child) => htmlString(<p>{child.text}</p>))
+          );
+        }
+        break;
+      case "image":
+        arrayOfElements.push(
+          htmlString(<img src={node.url} alt={node.children.text} />)
+        );
+        break;
+    }
+  }
+  return [].concat(...arrayOfElements);
+};
 
 // for code element
-const CodeElement = (props) => {
+export const CodeElement = (props) => {
   return (
     <pre {...props.attributes}>
       <code>{props.children}</code>
@@ -23,7 +70,7 @@ const CodeElement = (props) => {
 };
 
 // paragraph element
-const DefaultElement = (props) => {
+export const DefaultElement = (props) => {
   return <p {...props.attributes}>{props.children}</p>;
 };
 
@@ -82,7 +129,8 @@ const withImages = (editor) => {
 
   return editor;
 };
-const Image = ({ attributes, children, element }) => {
+
+export const Image = ({ attributes, children, element }) => {
   const selected = useSelected();
   const focused = useFocused();
   return (
@@ -108,20 +156,7 @@ const initialValue = [
     type: "paragraph",
     children: [
       {
-        text: "In addition to nodes that contain editable text, you can also create other types of nodes, like images or videos.",
-      },
-    ],
-  },
-  {
-    type: "image",
-    url: "https://source.unsplash.com/kFrdX5IeQzI",
-    children: [{ text: "" }],
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text: "This example shows images in action. It features two ways to add images. You can either add an image via the toolbar icon above, or if you want in on a little secret, copy an image URL to your clipboard and paste it anywhere in the editor!",
+        text: "Write your blog here.",
       },
     ],
   },
@@ -267,17 +302,18 @@ const TextEditor = ({ blogThumbnail, blogTitle, user }) => {
       <div className="flex justify-center">
         <button
           onClick={async () => {
-            const res = await axios.post(
+            const val = rules(value).join("");
+            await axios.post(
               "/api/v1/blog",
               {
                 user_id: user.id,
                 blog_title: blogTitle,
                 blog_thumbnail: blogThumbnail,
-                blog_text: JSON.stringify(value).toString(),
+                blog_text: val,
               },
               { withCredentials: true }
             );
-            console.log(`res`, res);
+            history.push("/blogs");
           }}
           className="bg-gray-900 text-white-normal p-2 mr-2"
         >
