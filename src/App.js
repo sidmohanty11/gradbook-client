@@ -29,8 +29,10 @@ const AddBlog = lazy(() => import("./components/BlogComponent/AddBlog"));
 const Messages = lazy(() => import("./pages/messages"));
 const Message = lazy(() => import("./pages/message"));
 
+const user = null || JSON.parse(sessionStorage.getItem("user"));
+
 function App() {
-  const [activeUser, setActiveUser] = useState(null);
+  const [activeUser, setActiveUser] = useState(user);
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <Switch>

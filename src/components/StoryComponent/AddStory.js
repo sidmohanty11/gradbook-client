@@ -173,7 +173,10 @@ function AddStory() {
             Cancel
           </button>
           <button
-            onClick={addYourStory}
+            onClick={(e) => {
+              addYourStory(e);
+              history.push("/stories");
+            }}
             className="w-auto bg-green-logo hover:bg-green-forhover rounded-lg shadow-xl font-medium text-white px-4 py-2"
           >
             Post

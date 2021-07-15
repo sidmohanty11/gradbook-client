@@ -166,6 +166,7 @@ function Header({ active, user }) {
                   {},
                   { withCredentials: true }
                 );
+                sessionStorage.removeItem("user");
               }}
               className={`${
                 dropdown ? "block" : "hidden"
