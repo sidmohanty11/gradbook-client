@@ -1,5 +1,8 @@
 # Welcome to Gradbook!
 
+## Model
+https://user-images.githubusercontent.com/73601258/128333419-8c678c22-4cc8-4d34-9830-18632dc45471.mp4
+
 ## Why?
 
 In short, the story goes like....
